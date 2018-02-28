@@ -1,5 +1,5 @@
 .new-tweet {
-  margin:2em;
+  margin: 2em;
   background-color: #eee;
   padding: 1em;
   border-radius: 5px;
@@ -16,7 +16,7 @@
   padding: 4px;
 }
 
-hr {
+.new-tweet hr {
   display: block;
   height: 1px;
   border: 0;

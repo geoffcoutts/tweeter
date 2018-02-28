@@ -1,6 +1,55 @@
-.tweet {
+article.tweet {
+  box-sizing: border-box;
+  overflow: auto;
   margin: 2em;
-  background-color:#eee;
-  padding: 1em;
+  border: 1px solid #eee;
   border-radius: 5px;
+}
+
+article.tweet header {
+  display: flex;
+  background-color: #eee;
+  justify-content: space-between;
+  padding: 0.5em;
+}
+
+article.tweet header div {
+  display: flex;
+  justify-content: flex-start;
+  padding: 0em;
+}
+
+article.tweet header .profile-picture {
+  width: 75px;
+  height: 75px;
+  border-radius: 5px;
+  margin-right: 1em;
+}
+
+article.tweet header .profile-name {
+  line-height: 0;
+}
+
+article.tweet .handle {
+  font-weight: lighter;
+}
+
+article.tweet div {
+  box-sizing: border-box;
+  height: 75px;
+  width: 100%;
+  padding: 0 1em;
+}
+
+article.tweet div p {
+
+}
+
+article.tweet hr {
+ border-top: #eee;
+}
+
+article.tweet footer {
+  height: 40px;
+  padding: 0.5em;
 }
