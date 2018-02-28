@@ -16,6 +16,7 @@ article.tweet:hover footer img{
 article.tweet header {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   padding: 0.5em;
   background-color: #eee;
 }
@@ -34,22 +35,26 @@ article.tweet header .profile-picture {
 }
 
 article.tweet header .profile-name {
+  margin-top: 15px;
   line-height: 0;
 }
 
 article.tweet .handle {
   font-weight: lighter;
+  margin-top: 7px;
 }
 
 article.tweet div {
   box-sizing: border-box;
-  height: 75px;
+  /* height: 75px; */
   width: 100%;
   padding: 0 1em;
+  word-wrap: break-word;
 }
 
 article.tweet div p {
-
+  font-size: 1.5em;
+  vertical-align: top;
 }
 
 article.tweet hr {
