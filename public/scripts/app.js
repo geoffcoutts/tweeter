@@ -4,67 +4,23 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-// const data = [
-//   {
-//     "user": {
-//       "name": "Newton",
-//       "avatars": {
-//         "small":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
-//         "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
-//         "large":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
-//       },
-//       "handle": "@SirIsaac"
-//     },
-//     "content": {
-//       "text": "If I have seen further it is by standing on the shoulders of giants"
-//     },
-//     "created_at": 1461116232227
-//   },
-//   {
-//     "user": {
-//       "name": "Descartes",
-//       "avatars": {
-//         "small":   "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_50.png",
-//         "regular": "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc.png",
-//         "large":   "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_200.png"
-//       },
-//       "handle": "@rd" },
-//     "content": {
-//       "text": "Je pense , donc je suis"
-//     },
-//     "created_at": 1461113959088
-//   },
-//   {
-//     "user": {
-//       "name": "Johann von Goethe",
-//       "avatars": {
-//         "small":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_50.png",
-//         "regular": "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1.png",
-//         "large":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_200.png"
-//       },
-//       "handle": "@johann49"
-//     },
-//     "content": {
-//       "text": "Es ist nichts schrecklicher als eine tätige Unwissenheit."
-//     },
-//     "created_at": 1461113796368
-//   }
-// ];
-
 
 $(document).ready(function() {
 
+  // Function to pass information from database to createTweetElement. Prepends the result to #tweet-container.
   function renderTweets (tweets) {
-    // let test = $(`#tweet-container`).children().length;
+    // Checks if #tweet-container is empty (page load). if it is, will run through entire database of tweets and display them.
     if ($(`#tweet-container`).children().length === 0) {
       tweets.forEach(function (tweetData) {
         createTweetElement(tweetData).prependTo($(`#tweet-container`));
       });
+    // On creation of new tweet, will post the newly created to the top of page.
     } else {
       createTweetElement(tweets[tweets.length - 1]).prependTo($(`#tweet-container`));
     }
   }
 
+  // Creates new tweet article to be used by the renderTweets function.
   function createTweetElement (tweetData) {
     let daysAgo = timePassed(tweetData.created_at);
     let $tweet =
@@ -83,7 +39,7 @@ $(document).ready(function() {
         )
         .append($("</header>")
         )
-        .append($(`<div><p>${tweetData.content.text}</p></div>`)
+        .append($(`<div><p>${escape(tweetData.content.text)}</p></div>`)
         )
         .append($(`<hr/>`)
         )
@@ -106,9 +62,7 @@ $(document).ready(function() {
     return $tweet;
   }
 
-
-  // renderTweets(data);
-
+  // Function that calls an AJAX request to load tweets onto the page with the renderTweets function. Autonomous so fires on page load, otherwise when called by the new tweet event handler.
   function loadTweets () {
     $.ajax({
       url: "/tweets/",
@@ -124,9 +78,11 @@ $(document).ready(function() {
 
   // EVENT HANDLERS
 
+  // AJAX request for new tweet
   $("#tweet-input").on('submit', function(event) {
     event.preventDefault();
 
+    // Handles situations of a tweet being too long or empty by displaying a popup and not submitting the tweet. Else, sends the formData to be handled by loadTweets.
     let newTweet = $("#tweet-input")[0][0].value;
     if (newTweet === "") {
       alert("Your tweet is empty!");
@@ -143,20 +99,27 @@ $(document).ready(function() {
 
 });
 
+// Escape function to prevent cross-site scripting
+function escape(str) {
+  var div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+}
 
-  function timePassed (dateString) {
-    let time = Date.now() - dateString;
-    // return time
-    if (time < 60000 ) {
-      return `Moments ago`;
-    } else if (time >= 60000 && time < 3600000) {
-      return `${Math.floor(time / 1000 / 60)} minutes ago`;
-    } else if (time >= 3600000 && time < 86400000) {
-      return `${Math.floor(time / 1000 / 60 / 60)} hours ago`;
-    } else if (time >= 86400000 && time < 31540000000) {
-      return `${Math.floor(time / 1000 / 60 / 60 / 24)} days ago`;
-    } else if (time >= 31540000000) {
-      return `${Math.floor(time / 31540000000)} years ago`;
-    }
-
+// Function to calculate time since tweet was created. Will change depending on length of time
+function timePassed (dateString) {
+  let time = Date.now() - dateString;
+  // return time
+  if (time < 60000 ) {
+    return `Moments ago`;
+  } else if (time >= 60000 && time < 3600000) {
+    return `${Math.floor(time / 1000 / 60)} minutes ago`;
+  } else if (time >= 3600000 && time < 86400000) {
+    return `${Math.floor(time / 1000 / 60 / 60)} hours ago`;
+  } else if (time >= 86400000 && time < 31540000000) {
+    return `${Math.floor(time / 1000 / 60 / 60 / 24)} days ago`;
+  } else if (time >= 31540000000) {
+    return `${Math.floor(time / 31540000000)} years ago`;
   }
+
+}
