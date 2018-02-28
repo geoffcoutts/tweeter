@@ -1,16 +1,23 @@
 article.tweet {
   box-sizing: border-box;
-  overflow: auto;
   margin: 2em;
   border: 1px solid #eee;
   border-radius: 5px;
 }
 
+article.tweet:hover {
+  border: 1px solid #244751;
+}
+
+article.tweet:hover footer img{
+  opacity: 1;
+}
+
 article.tweet header {
   display: flex;
-  background-color: #eee;
   justify-content: space-between;
   padding: 0.5em;
+  background-color: #eee;
 }
 
 article.tweet header div {
@@ -50,6 +57,20 @@ article.tweet hr {
 }
 
 article.tweet footer {
+  display: flex;
+  justify-content: space-between;
   height: 40px;
   padding: 0.5em;
+  width: auto;
+}
+
+article.tweet footer div {
+  width: 100px;
+}
+
+article.tweet footer img {
+/*  float: right;
+*/  height: 20px;
+    width: 20px;
+    opacity: 0;
 }
