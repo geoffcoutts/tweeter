@@ -12,18 +12,15 @@
 .nav-logo {
   display: flex;
   align-items: center;
-  /* float: left; */
 }
 
 #nav-bar .logo {
   width: 80px;
   height: 80px;
-  /* float: left; */
   margin-right: 10px;
 }
 
 #nav-bar .header {
-  /* float: left; */
   font-size: 2em;
   line-height: 250%;
   }
@@ -37,13 +34,15 @@
 }
 
 #compose {
+  display: flex;
+  align-items: center;
   border: 1px black solid;
   border-radius: 5px;
-  font-size: 2em;
+  font-size: 1.50em;
   background-color: #e8fdff;
   color: #00a087;
   font-weight: 300;
-  padding: 12px 10px;
+  padding: 0px 10px;
 }
 
 .nav-buttons span {

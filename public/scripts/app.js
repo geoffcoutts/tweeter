@@ -1,10 +1,3 @@
-/*
- * Client-side JS logic goes here
- * jQuery is already loaded
- * Reminder: Use (and do all your DOM work in) jQuery's document ready function
- */
-
-
 $(document).ready(function() {
 
   // *******************
@@ -49,7 +42,7 @@ $(document).ready(function() {
         )
         .append($("</header>")
         )
-        .append($(`<div><p>${escape(tweetData.content.text)}</p></div>`)
+        .append($(`<div class="tweet-text"><p>${escape(tweetData.content.text)}</p></div>`)
         )
         .append($(`<hr/>`)
         )
@@ -70,6 +63,16 @@ $(document).ready(function() {
         .append($(`</footer>`)
         );
     return $tweet;
+  }
+
+  // Submit new tweet on enter keypress when .new-tweet textarea is in focus.
+  if ($(".new-tweet textarea").focus()) {
+    $(".new-tweet textarea").on("keypress", function(event) {
+      let key = event.key;
+      if (key ===  "Enter") {
+        $(".new-tweet textarea").submit();
+      }
+    });
   }
 
   // **************

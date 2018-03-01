@@ -44,15 +44,14 @@ article.tweet .handle {
   margin-top: 7px;
 }
 
-article.tweet div {
+article.tweet .tweet-text {
   box-sizing: border-box;
-  /* height: 75px; */
   width: 100%;
   padding: 0 1em;
   word-wrap: break-word;
 }
 
-article.tweet div p {
+article.tweet .tweet-text p {
   font-size: 1.5em;
   vertical-align: top;
 }
@@ -66,11 +65,10 @@ article.tweet footer {
   justify-content: space-between;
   height: 40px;
   padding: 0.5em;
-  width: auto;
 }
 
 article.tweet footer div {
-  width: 100px;
+  width: auto;
 }
 
 article.tweet footer i {
