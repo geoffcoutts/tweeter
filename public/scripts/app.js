@@ -7,6 +7,16 @@
 
 $(document).ready(function() {
 
+  // *******************
+  // *DISPLAY SCRIPTING*
+  // *******************
+
+  // Toggles display of compose tweet box when clicking compose button in nav bar
+  $("#compose").click(function() {
+    $(".new-tweet").slideToggle();
+    $(".new-tweet textarea").focus();
+  });
+
   // Function to pass information from database to createTweetElement. Prepends the result to #tweet-container.
   function renderTweets (tweets) {
     // Checks if #tweet-container is empty (page load). if it is, will run through entire database of tweets and display them.
@@ -24,9 +34,9 @@ $(document).ready(function() {
   function createTweetElement (tweetData) {
     let daysAgo = timePassed(tweetData.created_at);
     let $tweet =
-        $("<article class='tweet'>")
+        $(`<article class='tweet'>`)
         .append($("<header>")
-          .append($("<div class='avatar'>")
+          .append($(`<div class='avatar'>`)
             .append($(`<img class='profile-picture' src='${tweetData.user.avatars.regular}'>`)
             )
             .append($(`<h2 class='profile-name'>${tweetData.user.name}</h2>`)
@@ -47,11 +57,11 @@ $(document).ready(function() {
           .append($(`<span class='days-back'>${daysAgo}</span>`)
           )
           .append($(`<div class='tweetButtons'>`)
-            .append($(`<img src='../images/tweetFlag.png'>`)
+            .append($(`<i class='fas fa-flag'></i>`)
             )
-            .append($(`<img src='../images/tweetRetweet.png'>`)
+            .append($(`<i class='fas fa-retweet'></i>`)
             )
-            .append($(`<img src='../images/tweetLike.png'>`)
+            .append($(`<i class='fas fa-heart'></i>`)
             )
           )
           .append($(`</div>`)
@@ -61,6 +71,10 @@ $(document).ready(function() {
         );
     return $tweet;
   }
+
+  // **************
+  // *AJAX METHODS*
+  // **************
 
   // Function that calls an AJAX request to load tweets onto the page with the renderTweets function. Autonomous so fires on page load, otherwise when called by the new tweet event handler.
   function loadTweets () {
@@ -75,8 +89,6 @@ $(document).ready(function() {
   }
 
   loadTweets();
-
-  // EVENT HANDLERS
 
   // AJAX request for new tweet
   $("#tweet-input").on('submit', function(event) {
@@ -96,8 +108,11 @@ $(document).ready(function() {
       });
     }
   });
-
 });
+
+// ********************
+// *RESOURCE FUNCTIONS*
+// ********************
 
 // Escape function to prevent cross-site scripting
 function escape(str) {
@@ -106,18 +121,17 @@ function escape(str) {
   return div.innerHTML;
 }
 
-// Function to calculate time since tweet was created. Will change depending on length of time
+// Function to calculate time since tweet was created. Takes in millisecond date string from tweet database as argument. Will change depending on length of time
 function timePassed (dateString) {
   let time = Date.now() - dateString;
-  // return time
   if (time < 60000 ) {
     return `Moments ago`;
   } else if (time >= 60000 && time < 3600000) {
-    return `${Math.floor(time / 1000 / 60)} minutes ago`;
+    return `${Math.floor(time / 60000)} minutes ago`;
   } else if (time >= 3600000 && time < 86400000) {
-    return `${Math.floor(time / 1000 / 60 / 60)} hours ago`;
+    return `${Math.floor(time / 3600000)} hours ago`;
   } else if (time >= 86400000 && time < 31540000000) {
-    return `${Math.floor(time / 1000 / 60 / 60 / 24)} days ago`;
+    return `${Math.floor(time / 86400000)} days ago`;
   } else if (time >= 31540000000) {
     return `${Math.floor(time / 31540000000)} years ago`;
   }

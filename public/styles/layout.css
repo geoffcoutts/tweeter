@@ -24,13 +24,10 @@ body {
 main {
   width: 450px;
   margin: auto;
-  padding-top: 80px;
-  bottom: 0;
-  top: 0;
+  padding: 1px 0px;
+  /* bottom: 0; */
+  /* top: 0; */
   background-color: white;
-
-
-
 }
 
 /*
