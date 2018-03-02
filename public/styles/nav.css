@@ -1,4 +1,5 @@
 #nav-bar {
+  position: fixed;
   display: flex;
   justify-content: space-between;
   background-color:  #00a087;
@@ -7,6 +8,7 @@
   color: #e8fdff;
   padding: 0em 2em;
   z-index: 1000;
+  width: 100%;
 }
 
 .nav-logo {

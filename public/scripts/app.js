@@ -49,7 +49,7 @@ $(document).ready(function() {
         .append($(`<footer>`)
           .append($(`<span class='days-back'>${daysAgo}</span>`)
           )
-          .append($(`<div class='tweetButtons'>`)
+          .append($(`<div class='tweet-buttons'>`)
             .append($(`<i class='fas fa-flag'></i>`)
             )
             .append($(`<i class='fas fa-retweet'></i>`)
@@ -108,6 +108,8 @@ $(document).ready(function() {
       $.post("/tweets/", formData)
       .done(function (result) {
         loadTweets();
+        $("#tweet-input textarea").val("");
+        $("#tweet-input .counter").text("140");
       });
     }
   });
@@ -126,6 +128,7 @@ function escape(str) {
 
 // Function to calculate time since tweet was created. Takes in millisecond date string from tweet database as argument. Will change depending on length of time
 function timePassed (dateString) {
+  let now = Date.now()
   let time = Date.now() - dateString;
   if (time < 60000 ) {
     return `Moments ago`;

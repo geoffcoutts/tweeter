@@ -22,12 +22,39 @@ body {
 }
 
 main {
-  width: 450px;
+  width: 100%;
   margin: auto;
-  padding: 1px 0px;
+  padding: 80px 0px 1px 0px;
   background-color: white;
 }
 
-/*
- * Additional CSS can be defined below or in other CSS files, as per instructions
- */
+@media screen and (min-device-width: 480px) {
+  main {
+    width: 95%;
+  }
+}
+
+@media screen and (min-device-width: 540px) {
+  main {
+    width: 80%;
+  }
+}
+
+@media screen and (min-device-width: 660px) {
+  main {
+    width: 70%;
+  }
+}
+
+@media screen and (min-device-width: 780px) {
+  main {
+    width: 60%;
+  }
+}
+
+@media screen and (min-device-width: 960px) {
+  main {
+    width: 480px;
+  }
+}
+
