@@ -12,8 +12,11 @@ Currently working on user registration and login in a separate branch.
 
 ## Screenshots
 
+Sreenshot of Tweeter layout
 !["Sreenshot of Tweeter layout"](https://github.com/geoffcoutts/tweeter/blob/master/docs/Tweeter%20Layout.png?raw=true)
+Sreenshot of Tweeter alert messages
 !["Sreenshot of Tweeter alert messages"](https://github.com/geoffcoutts/tweeter/blob/master/docs/Tweeter%20Layout.png?raw=true)
+Sreenshot of Tweeter in mobile profile
 !["Sreenshot of Tweeter in mobile profile"](https://github.com/geoffcoutts/tweeter/blob/master/docs/Tweeter%20Mobile.png?raw=true)
 
 ## Getting Started
