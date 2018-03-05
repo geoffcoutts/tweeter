@@ -25,6 +25,7 @@ module.exports = function(userHelpers) {
           "name": req.body.handle
         };
 
+
         req.session.user_id = newUser.handle;
         userHelpers.register(newUser, (err) => {
           if (err) {
