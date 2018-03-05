@@ -74,6 +74,13 @@ $(document).ready(function() {
       }
     });
   }
+////////////////////////////
+  // if (req.session.user_id) {
+  //   $("#register").hide();
+  //   $("#login").hide();
+  // } else {
+  //   $("#logout").hide();
+  // }
 
   // **************
   // *AJAX METHODS*
@@ -92,6 +99,25 @@ $(document).ready(function() {
   }
 
   loadTweets();
+
+  $("#register").on("submit", function(event) {
+    event.preventDefault();
+
+    let newUser = {handle: $("#register .handle").val(),
+                   password: $("#register .password").val(),
+                   name: $("#register .handle").val()
+                 };
+    // newUser.serialize();
+    $.post("/register/", newUser)
+    .done(function (user_id) {
+      $("#register").hide();
+      $("#login").hide();
+    })
+    .fail(function (){
+      alert("registration failed");
+    });
+
+  });
 
   // AJAX request for new tweet
   $("#tweet-input").on('submit', function(event) {
@@ -128,7 +154,7 @@ function escape(str) {
 
 // Function to calculate time since tweet was created. Takes in millisecond date string from tweet database as argument. Will change depending on length of time
 function timePassed (dateString) {
-  let now = Date.now()
+  let now = Date.now();
   let time = Date.now() - dateString;
   if (time < 60000 ) {
     return `Moments ago`;

@@ -45,6 +45,31 @@
       <div class="nav-buttons">
         <i class="fas fa-edit" id="compose"><span>Compose</span></i>
       </div>
+      <div class="user-function">
+        <div class="login">
+          <form id="login" method="POST" action="/login">
+            <label for="handle">Handle: </label>
+            <input class="handle" type="text" name="handle" placeholder="Handle">
+            <label for="password">Password: </label>
+            <input class="password" class="inputfield" type="password" name="password" placeholder="password">
+            <input type="submit" value="Login">
+          </form>
+        </div>
+        <div div class="register">
+          <form id="register" method="POST" action="/register/">
+            <label for="handle">Handle: </label>
+            <input class="handle" type="text" name="handle" placeholder="Handle">
+            <label for="password">Password: </label>
+            <input class="password" class="inputfield" type="password" name="password" placeholder="password">
+            <input type="submit" value="Register">
+          </form>
+        </div>
+        <div div class="logout">
+          <form id="logout" method="POST" action="/logout/">
+            <input type="submit" value="Logout">
+          </form>
+        </div>
+      </div>
     </nav>
 
     <!-- Page-specific (main) content here -->
